@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About - Ganesh Nayak</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: linear-gradient(135deg, #3498db, #8e44ad);
+            overflow-y: scroll; /* Make body scrollable */
+            transition: background-color 0.3s ease;
+        }
+
+        /* Container Styles */
+        .about-container {
+            max-width: 800px;
+            margin: 80px auto 20px; /* Adjusted margin to add space */
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+            text-align: center;
+            opacity: 0;
+            animation: fadeIn 1s ease-in-out forwards;
+            transition: transform 0.3s, box-shadow 0.3s;
+            background-image: linear-gradient(135deg, #ff6ec4, #7873f5);
+
+
+        }
+
+        .profile-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50% ;
+            border-width: 5px;
+            object-fit: cover;
+            margin: 20px auto;
+            transition: all 0.3s ease;
+            animation: float 3s infinite ease-in-out;
+
+        }
+        
+        @keyframes float {
+            0% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+            100% {
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            } 
+         
+        }
+
+        footer {
+            background-color: #fff;
+            box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+        footer p {
+            text-align: center;
+            padding: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="about-container pt-8">
+        <img src="images/profile.jpg" alt="Ganesh Nayak" class="profile-img">
+        <h1 class="text-3xl font-bold mb-4">Ganesh Nayak</h1>
+        <p class="text-lg mb-4">B.Tech CSE Student</p>
+        <p class="text-lg">Srinivas University, Mangalore</p>
+        <p class="text-lg">Date of Birth: 17-03-2006</p>
+        <p class="text-lg">Course: Computer Science</p>
+        <!-- Add more details as needed -->
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Ganesh Nayak - All rights reserved</p>
+    </footer>
+</body>
+</html>

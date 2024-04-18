@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact - Ganesh Nayak</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <!-- Font Awesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: linear-gradient(135deg, #3498db, #8e44ad);
+            overflow-y: scroll; /* Make body scrollable */
+            transition: background-color 0.3s ease;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        /* Container Styles */
+        .contact-container {
+            max-width: 800px;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+            text-align: center;
+            opacity: 0;
+            animation: fadeIn 1s ease-in-out forwards;
+            transition: transform 0.3s, box-shadow 0.3s;
+            background-image: linear-gradient(135deg, #ff6ec4, #7873f5);
+            float: left; /* Float the container to the left */
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin-top: 30px;
+        }
+
+        .contact-info p {
+            margin: 10px 0;
+        }
+
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .social-icons a {
+            margin: 0 10px;
+            color: #fff;
+            font-size: 20px;
+            transition: transform 0.3s, color 0.3s;
+        }
+
+        .social-icons a:hover {
+            color: #ffd700; /* Change color on hover */
+            transform: scale(1.2); /* Scale up on hover */
+        }
+    </style>
+</head>
+<body>
+    <div class="contact-container pt-8">
+        <h1 class="text-3xl font-bold mb-4">Contact Ganesh Nayak</h1>
+        <div class="contact-info">
+            <p>Phone: 7676377870</p>
+            <p>Email: ganeshnayak8175@gmail.com</p>
+        </div>
+        <div class="social-icons">
+            <a href="https://www.instagram.com/imganeshnnayak/" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="https://github.com/imganeshnayak" target="_blank"><i class="fab fa-github"></i></a>
+            <a href="https://www.instagram.com/imganeshnnayak" target="_blank"><i class="fab fa-"></i></a>
+
+            <!-- Add more social media icons as needed -->
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ganesh Nayak - Portfolio</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+
+        body {
+            background: linear-gradient(135deg, #3498db, #8e44ad);
+            overflow-y: scroll; /* Make body scrollable */
+        }
+        body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', sans-serif;
+    background: linear-gradient(135deg, #3498db, #8e44ad);
+    overflow-y: scroll; /* Make body scrollable */
+}
+
+/* Sticky navigation bar */
+.sticky {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 10; /* Ensure it appears above other content */
+}
+
+/* Glass prism effect */
+header {
+    background-color: rgba(255, 255, 255, 0.3); /* Adjust opacity as needed */
+    backdrop-filter: blur(10px); /* Add blur effect */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ;
+    cursor:pointer ;
+}
+
+header a {
+
+    color: #4a5568;
+    font-weight: bold;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+header a:hover {
+    color: #2d3748;
+}
+
+        /* Container Styles */
+        .portfolio-container,
+        .portfolio-container2,
+        .portfolio-container3,
+        .portfolio-container4 {
+            max-width: 800px;
+            margin:  0 auto ;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 10px;
+            text-align: center;
+            opacity: 0;
+            animation: fadeIn 5s   ease-in-out forwards;
+            transition: transform 0.3s, box-shadow 0.3s;
+            background-image: linear-gradient(135deg, #ff6ec4, #7873f5);
+            cursor:pointer ;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5); /* Initial shadow */
+        }
+        /* Hover Effect */
+        .portfolio-container:hover,
+        .portfolio-container2:hover,
+        .portfolio-container3:hover,
+        .portfolio-container4:hover {
+            box-shadow: 0 12px 20px rgba(0, 0, 0, 0.8); /* Shadow effect on hover */
+        }
+        .profile-container:hover {
+            box-shadow: 0 12px 20px rgba(0, 0, 0, 0.8); /* Shadow effect on hover */
+        }
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+           
+          
+        }
+        .profile-container {
+            max-width: 800px;
+            margin: 80px auto 20px; /* Adjusted margin to add space */
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            background-image: linear-gradient(135deg, #ff6ec4, #7873f5);
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5); /* Initial shadow */
+            cursor:pointer ;
+            text-align: center;
+            opacity: 0;
+            animation: fadeIn 1s ease-in-out forwards;
+        }
+        .profile-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin: 20px auto;
+            transition: all 0.3s ease;
+            animation: float 3s infinite ease-in-out;
+            border-width: 5px;
+        }
+        @keyframes float {
+            0% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+            100% {
+                transform: translateY(0);
+            }
+        }
+
+        .profile-details {
+            color: #333;
+        }
+        footer {
+            background-color: #fff;
+            box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            background-image: linear-gradient(135deg, #ff6ec4, #7873f5);
+
+        }
+        footer p {
+            text-align: center;
+            padding: 10px 0;
+        }
+
+    </style>
+</head>
+<body>
+    <header class="text-gray-700 body-font bg-transparent shadow-md sticky top-0 z-10">
+        <div class="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
+            <a class="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0">
+                <img class="w-10 h-10 rounded-full" src="images/profile-photo.jpg" alt="Profile Photo">
+                <span class="ml-3 text-xl">Ganesh Nayak</span>
+            </a>
+            <nav class="md:ml-auto flex flex-wrap items-center text-base justify-center">
+                <a href="about.html" class="mr-5 hover:text-gray-900">About</a>
+                <a href="contact.html" class="mr-5 hover:text-gray-900">Contact</a>
+                <a href="certification.html" class="mr-5 hover:text-gray-900">My certifications</a>
+            </nav>
+        </div>
+    </header>
+    <br><br>
+    <div class="profile-container pt-8 mt-16">
+        <img src="images/profile-photo.jpg" alt="Ganesh Nayak" class="profile-img">
+        <h1 class="text-3xl font-bold mb-4">Ganesh Nayak</h1>
+        <p class="text-lg mb-4">B.Tech CSE Student</p>
+        <p class="text-lg">Srinivas University | Batch 2023</p>
+    </div>
+    <br><br>
+
+<section>
+    <div class="portfolio-container pt-8 mt-16">
+        <h2 class="text-3xl font-sans font-bold mb-4">Project 1</h2>
+        <p>Description of Project 1</p>
+        <img src="project1.jpg" alt="Project 1">
+    </div>
+    <br>
+    <br>
+
+    <div class="portfolio-container2 pt-8 mt-16">
+        <h2 class="text-3xl font-bold mb-4">Project 2</h2>
+        <p>Description of Project 2</p>
+        <img src="project2.jpg" alt="Project 2">
+    </div><br><br>
+    <div class="portfolio-container3 pt-8 mt-16">
+        <h2 class="text-3xl font-bold mb-4">Project 3</h2>
+        <p>Description of Project 3</p>
+        <img src="project3.jpg" alt="Project 3">
+    </div>
+    <br><br>
+    <div class="portfolio-container4 pt-8 mt-16">
+        <h2 class="text-3xl font-bold mb-4">Project 4</h2>
+        <p>Description of Project 4</p>
+        <img src="project4.jpg" alt="Project 4">
+    </div>
+</section>
+<br> <br><br>
+<footer>
+    <p>&copy; 2024 Ganesh Nayak - All rights reserved</p>
+</footer>
+
+</body>
+</html>
+
+
+
+
+
+
