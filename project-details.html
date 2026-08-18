@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="pageTitle">Project Details | Ganesh</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet" />
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Outfit', 'sans-serif'],
+                    },
+                    colors: {
+                        zinc: {
+                            850: '#1f1f22',
+                            950: '#0a0a0a',
+                        },
+                        brand: {
+                            500: '#6366f1',
+                            400: '#818cf8',
+                        }
+                    },
+                    animation: {
+                        'blob': 'blob 7s infinite',
+                        'fade-in': 'fadeIn 0.5s ease-out forwards',
+                    },
+                    keyframes: {
+                        blob: {
+                            '0%': { transform: 'translate(0px, 0px) scale(1)' },
+                            '33%': { transform: 'translate(30px, -50px) scale(1.1)' },
+                            '66%': { transform: 'translate(-20px, 20px) scale(0.9)' },
+                            '100%': { transform: 'translate(0px, 0px) scale(1)' },
+                        },
+                        fadeIn: {
+                            '0%': { opacity: '0', transform: 'translateY(10px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        .bg-noise {
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
+        }
+
+        .bg-grid {
+            background-size: 40px 40px;
+            background-image: linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+        }
+
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .glass-dock {
+            background: rgba(10, 10, 10, 0.6);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1), 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+
+        ::-webkit-scrollbar {
+            width: 0px;
+            background: transparent;
+        }
+    </style>
+</head>
+
+<body class="bg-zinc-950 text-zinc-100 font-sans selection:bg-brand-500/30 overflow-x-hidden relative min-h-screen">
+
+    <!-- Background Accents -->
+    <div class="fixed inset-0 z-0 bg-grid pointer-events-none"></div>
+    <div class="fixed inset-0 z-0 bg-noise pointer-events-none opacity-50"></div>
+    <div class="fixed top-0 left-1/4 w-96 h-96 bg-brand-500/10 rounded-full blur-[128px] animate-blob pointer-events-none"></div>
+    <div class="fixed bottom-0 right-1/4 w-96 h-96 bg-purple-500/10 rounded-full blur-[128px] animate-blob animation-delay-2000 pointer-events-none"></div>
+
+    <!-- Top Navigation Header -->
+    <header class="fixed top-0 left-0 right-0 z-40 px-6 py-4 backdrop-blur-md bg-zinc-950/60 border-b border-white/5">
+        <div class="max-w-5xl mx-auto flex items-center justify-between">
+            <a href="index.html#projects" class="inline-flex items-center gap-2 text-sm font-medium text-zinc-400 hover:text-white transition-colors bg-white/5 border border-white/10 px-4 py-2 rounded-full">
+                <span class="material-symbols-rounded text-lg">arrow_back</span> Back to Projects
+            </a>
+            <span id="headerTitle" class="text-sm font-display font-semibold text-zinc-300 hidden sm:inline-block">Project Showcase</span>
+            <a href="https://github.com/imganeshnayak" target="_blank" class="text-xs font-semibold text-brand-400 hover:text-white transition-colors flex items-center gap-1">
+                GitHub <span class="material-symbols-rounded text-sm">arrow_outward</span>
+            </a>
+        </div>
+    </header>
+
+    <!-- Main Content Container -->
+    <main class="relative z-10 max-w-5xl mx-auto px-6 pt-28 pb-36">
+
+        <!-- Project Hero Section -->
+        <section class="mb-12 animate-fade-in">
+            <div id="projectBadge" class="inline-block px-3 py-1 text-xs font-bold rounded-full mb-4"></div>
+            <h1 id="projectTitle" class="text-4xl md:text-6xl font-display font-bold text-white mb-3"></h1>
+            <p id="projectSubtitle" class="text-xl text-zinc-400 leading-relaxed max-w-3xl mb-8"></p>
+
+            <!-- Key Info Bar -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 glass-panel p-5 rounded-2xl">
+                <div>
+                    <div class="text-xs text-zinc-500 font-bold uppercase tracking-wider mb-1">Role</div>
+                    <div id="infoRole" class="text-sm font-medium text-white">Full-Stack Developer</div>
+                </div>
+                <div>
+                    <div class="text-xs text-zinc-500 font-bold uppercase tracking-wider mb-1">Timeline</div>
+                    <div id="infoTimeline" class="text-sm font-medium text-white">2026</div>
+                </div>
+                <div>
+                    <div class="text-xs text-zinc-500 font-bold uppercase tracking-wider mb-1">Category</div>
+                    <div id="infoCategory" class="text-sm font-medium text-white">Full-Stack Web App</div>
+                </div>
+                <div>
+                    <div class="text-xs text-zinc-500 font-bold uppercase tracking-wider mb-1">Links</div>
+                    <div class="flex items-center gap-3">
+                        <a id="infoGithub" href="https://github.com/imganeshnayak" target="_blank" class="text-sm font-medium text-brand-400 hover:underline flex items-center gap-1">
+                            Code <span class="material-symbols-rounded text-xs">open_in_new</span>
+                        </a>
+                        <a id="infoLiveDemo" href="#" target="_blank" class="text-sm font-medium text-purple-400 hover:underline flex items-center gap-1 hidden">
+                            Live Demo <span class="material-symbols-rounded text-xs">rocket_launch</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Project Screenshots Gallery Section -->
+        <section class="mb-16">
+            <div class="flex items-center justify-between mb-6">
+                <div>
+                    <h2 class="text-2xl font-display font-bold text-white">Project Screenshots & Visuals</h2>
+                    <p class="text-xs text-zinc-400">High-resolution application screenshots and interface previews.</p>
+                </div>
+            </div>
+
+            <!-- Hero Main Screenshot Frame -->
+            <div class="glass-panel p-2 rounded-3xl overflow-hidden mb-6 border border-white/10 relative group">
+                <div class="w-full aspect-[16/9] rounded-2xl bg-zinc-900 overflow-hidden relative flex items-center justify-center">
+                    <img id="mainScreenshot" src="" alt="Project Hero Visual" class="w-full h-full object-cover rounded-2xl hidden" onerror="this.classList.add('hidden'); this.nextElementSibling.classList.remove('hidden');" />
+                    <!-- Fallback Placeholder Card -->
+                    <div id="mainPlaceholder" class="w-full h-full min-h-[320px] flex flex-col items-center justify-center p-8 text-center bg-gradient-to-br from-zinc-900 via-zinc-950 to-zinc-900 border border-dashed border-white/10 rounded-2xl">
+                        <div class="h-16 w-16 rounded-2xl bg-brand-500/10 text-brand-400 flex items-center justify-center mb-4">
+                            <span class="material-symbols-rounded text-3xl">image</span>
+                        </div>
+                        <h3 id="placeholderTitle" class="text-lg font-bold text-white mb-2">Main Screenshot Slot</h3>
+                        <p class="text-xs text-zinc-400 max-w-md mb-4 leading-relaxed">
+                            Preview screenshot asset: <code id="placeholderPath" class="text-brand-300 font-mono">projects/artverse/artvers.netlify.app_.png</code>
+                        </p>
+                        <span class="px-3 py-1 rounded-full bg-white/5 text-zinc-400 text-xs border border-white/10 font-mono">16:9 High-Res Screenshot</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Secondary Screenshot Grid -->
+            <div id="secondaryScreenshotsGrid" class="grid md:grid-cols-2 gap-6">
+                <!-- Injected via JS -->
+            </div>
+        </section>
+
+        <!-- Project Overview & Features -->
+        <section class="mb-16 grid md:grid-cols-3 gap-8">
+            <div class="md:col-span-2 space-y-8">
+                <div class="glass-panel p-8 rounded-3xl">
+                    <h2 class="text-2xl font-display font-bold text-white mb-4">Overview & Challenge</h2>
+                    <p id="overviewText" class="text-zinc-300 leading-relaxed text-base"></p>
+                </div>
+
+                <div class="glass-panel p-8 rounded-3xl">
+                    <h2 class="text-2xl font-display font-bold text-white mb-6">Key Features & Architecture</h2>
+                    <ul id="featuresList" class="space-y-4 text-zinc-300 text-sm"></ul>
+                </div>
+            </div>
+
+            <!-- Tech Stack Sidebar -->
+            <div class="md:col-span-1 space-y-6">
+                <div class="glass-panel p-6 rounded-3xl sticky top-24">
+                    <h3 class="text-lg font-bold text-white mb-4 flex items-center gap-2">
+                        <span class="material-symbols-rounded text-brand-400">terminal</span> Tech Stack Used
+                    </h3>
+                    <div id="techChips" class="flex flex-wrap gap-2 mb-6"></div>
+
+                    <div class="border-t border-white/10 pt-6 space-y-3">
+                        <h4 class="text-xs uppercase font-bold text-zinc-500 tracking-wider mb-3">Links & Resources</h4>
+                        <a id="sidebarLiveDemoLink" href="#" target="_blank" class="w-full py-3 px-4 bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-white rounded-xl text-sm font-bold shadow-lg transition-all flex items-center justify-between hidden">
+                            <span class="flex items-center gap-2">🚀 Launch Live Demo</span>
+                            <span class="material-symbols-rounded text-base">arrow_outward</span>
+                        </a>
+                        <a id="sidebarGithubLink" href="https://github.com/imganeshnayak" target="_blank" class="w-full py-3 px-4 bg-white/5 hover:bg-white/10 border border-white/10 text-white rounded-xl text-sm font-semibold transition-colors flex items-center justify-between">
+                            <span>GitHub Repository</span>
+                            <span class="material-symbols-rounded text-base">arrow_outward</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Inter-Project Navigation Switcher -->
+        <section class="border-t border-white/10 pt-12 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <a id="prevProjectBtn" href="#" class="w-full sm:w-auto px-6 py-3 glass-panel rounded-2xl hover:bg-white/5 transition-colors flex items-center justify-center gap-3">
+                <span class="material-symbols-rounded">west</span>
+                <div class="text-left">
+                    <div class="text-[10px] text-zinc-500 uppercase font-bold">Previous</div>
+                    <div id="prevProjectTitle" class="text-sm font-bold text-white">Previous Project</div>
+                </div>
+            </a>
+
+            <a id="nextProjectBtn" href="#" class="w-full sm:w-auto px-6 py-3 glass-panel rounded-2xl hover:bg-white/5 transition-colors flex items-center justify-center gap-3">
+                <div class="text-right">
+                    <div class="text-[10px] text-zinc-500 uppercase font-bold">Next</div>
+                    <div id="nextProjectTitle" class="text-sm font-bold text-white">Next Project</div>
+                </div>
+                <span class="material-symbols-rounded">east</span>
+            </a>
+        </section>
+
+    </main>
+
+    <!-- Bottom Navigation Dock -->
+    <div class="fixed bottom-6 left-1/2 -translate-x-1/2 z-50">
+        <nav class="glass-dock px-2 py-2 rounded-full flex items-center gap-1 scale-90 md:scale-100 transition-all hover:scale-105 duration-300">
+            <a href="index.html" class="p-3 rounded-full hover:bg-white/10 transition-colors group relative">
+                <span class="material-symbols-rounded text-xl">home</span>
+                <span class="absolute -top-10 left-1/2 -translate-x-1/2 bg-zinc-800 text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap border border-white/10">Home</span>
+            </a>
+            <a href="index.html#projects" class="p-3 rounded-full bg-white/10 text-white transition-colors group relative">
+                <span class="material-symbols-rounded text-xl">grid_view</span>
+                <span class="absolute -top-10 left-1/2 -translate-x-1/2 bg-zinc-800 text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap border border-white/10">Projects</span>
+            </a>
+            <a href="aboutme.html" class="p-3 rounded-full hover:bg-white/10 transition-colors group relative">
+                <span class="material-symbols-rounded text-xl">person</span>
+                <span class="absolute -top-10 left-1/2 -translate-x-1/2 bg-zinc-800 text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap border border-white/10">About</span>
+            </a>
+            <a href="skills.html" class="p-3 rounded-full hover:bg-white/10 transition-colors group relative">
+                <span class="material-symbols-rounded text-xl">code</span>
+                <span class="absolute -top-10 left-1/2 -translate-x-1/2 bg-zinc-800 text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap border border-white/10">Skills</span>
+            </a>
+            <div class="w-px h-6 bg-white/10 mx-1"></div>
+            <a href="contact.html" class="p-3 rounded-full bg-brand-500/20 text-brand-400 hover:bg-brand-500 hover:text-white transition-all group relative">
+                <span class="material-symbols-rounded text-xl">mail</span>
+                <span class="absolute -top-10 left-1/2 -translate-x-1/2 bg-zinc-800 text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap border border-white/10">Contact</span>
+            </a>
+        </nav>
+    </div>
+
+    <!-- Data Script -->
+    <script>
+        const projects = {
+            artverse: {
+                id: 'artverse',
+                title: 'ArtVerse — Museum Companion Experience',
+                subtitle: 'A no-login, privacy-first museum companion web app with QR code scanning, 3D interactive museum maps, AI-powered guides, and offline PWA support.',
+                badge: '🌐 Live at artvers.netlify.app',
+                badgeStyle: 'bg-purple-500/20 text-purple-300 border border-purple-500/30',
+                role: 'Full-Stack Developer',
+                timeline: '2026',
+                category: 'PWA, AI & 3D Web App',
+                github: 'https://github.com/imganeshnayak/paradox',
+                liveDemo: 'https://artvers.netlify.app',
+                mainImage: 'projects/artverse/artvers.netlify.app_.png',
+                screenshots: [
+                    { src: 'projects/artverse/artvers.netlify.app_.png', title: 'Visitor Experience & QR Scanner', desc: 'Instant artwork discovery via device camera scanning and interactive homepage hero.' },
+                    { src: 'projects/artverse/Screenshot 2026-08-18 202711.png', title: 'Artwork Showcase & AI Chatbot', desc: 'Context-aware Q&A with Google Gemini AI, audio guides, translation, and user reviews.' },
+                    { src: 'projects/artverse/Screenshot 2026-08-18 202729.png', title: '3D Interactive Exhibition Map', desc: 'Three.js powered 3D museum map for spatial navigation across exhibition halls.' }
+                ],
+                overview: 'ArtVerse is a privacy-first museum companion Progressive Web App (PWA) designed to revolutionize visitor engagement with art without requiring logins or collecting personal data. Visitors scan QR codes placed next to gallery artworks to unlock high-resolution media, 3D models, AI-powered Q&A via Google Gemini, audio guides, multi-language translation, and real-time reviews — all while operating seamlessly offline via Service Worker caching.',
+                features: [
+                    { title: '🔍 In-Browser QR Code Scanning', desc: 'Instant artwork discovery using device camera scanning to immediately route visitors to interactive artwork detail pages.' },
+                    { title: '🗺️ Interactive 3D Museum Map', desc: 'Built using Three.js for immersive exhibition navigation, clickable gallery locations, floor views, and zoom controls.' },
+                    { title: '🤖 Google Gemini AI & Multilingual Translation', desc: 'Smart chatbot providing context-aware answers regarding artwork history, technique, and symbolism, alongside Helsinki-NLP translation (EN, ES, FR).' },
+                    { title: '📱 Offline PWA & Privacy-First Architecture', desc: 'Zero login required, anonymous 24-hour sessions, offline Service Worker asset caching, and batched analytics respecting GDPR.' },
+                    { title: '🛠️ Admin Analytics & Content Management', desc: 'Comprehensive admin dashboard with engagement heatmaps, dwell time tracking, Cloudinary media uploads, and bulk QR generation.' }
+                ],
+                tech: ['Next.js 16', 'React 19', 'TypeScript', 'Tailwind CSS', 'Express.js', 'MongoDB Atlas', 'Three.js', 'Google Gemini AI', 'Cloudinary', 'PWA / Service Worker'],
+                nextProject: 'krovaa',
+                prevProject: 'janavaz'
+            },
+            krovaa: {
+                id: 'krovaa',
+                title: 'Krovaa — Freelancing Marketplace',
+                subtitle: 'A full-stack freelancing & project collaboration platform with in-built wallet, milestone escrow, and Razorpay payment gateway integration.',
+                badge: 'Full-Stack Freelance Platform',
+                badgeStyle: 'bg-brand-500/20 text-brand-300 border border-brand-500/30',
+                role: 'Full-Stack Developer',
+                timeline: 'May 2026 - July 2026',
+                category: 'Freelance & Payments',
+                github: 'https://github.com/imganeshnayak/krovaa-web',
+                mainImage: 'projects/korvaa/Screenshot 2026-08-18 210002.png',
+                screenshots: [
+                    { src: 'projects/korvaa/Screenshot 2026-08-18 210002.png', title: 'Client & Freelancer Dashboard', desc: 'Main platform interface showing active project listings, client stats, and workspace navigation.' },
+                    { src: 'projects/korvaa/Screenshot 2026-08-18 210016.png', title: 'Project Proposal & Bidding UI', desc: 'SME project creation form and competitive proposal evaluation workspace.' },
+                    { src: 'projects/korvaa/Screenshot 2026-08-18 210036.png', title: 'Digital Wallet & Escrow Funds', desc: 'Milestone escrow funding workflow securing client payments prior to project execution.' },
+                    { src: 'projects/korvaa/Screenshot 2026-08-18 210046.png', title: 'Razorpay Payment Gateway Checkout', desc: 'Seamless payment portal for instantaneous wallet top-ups and milestone disbursements.' },
+                    { src: 'projects/korvaa/Screenshot 2026-08-18 210053.png', title: 'Milestone Approval & Fund Release', desc: 'Automated fund release triggers tied to milestone submission reviews and client verification.' },
+                    { src: 'projects/korvaa/Screenshot 2026-08-18 210112.png', title: 'User Profile & Rating Analytics', desc: 'Comprehensive user reputation scores, completed gig metrics, and review logs.' }
+                ],
+                overview: 'Krovaa is an end-to-end freelancing marketplace designed for small-and-medium enterprises (SMEs) and freelancers in the Indian market. The platform addresses trust and payment security by incorporating an in-built digital wallet, milestone-based escrow contracts, and automated payment release workflows.',
+                features: [
+                    { title: 'Project Listings & Bidding System', desc: 'Allows SMEs to post detailed project briefs, receive competitive bids from freelancers, compare profiles, and assign contracts.' },
+                    { title: 'In-Built Wallet & Escrow Service', desc: 'Holds client milestone payments securely in an escrow account, automatically releasing funds to the freelancer upon client approval of completed work.' },
+                    { title: 'Razorpay Payment Gateway Integration', desc: 'Enables real-time online deposits and withdrawals directly synchronized with client wallets and project workflows.' },
+                    { title: 'Full-Stack Architecture & Auth', desc: 'Built robust REST APIs, PostgreSQL database schemas using Prisma ORM, and secure JWT authentication for role-based access control.' }
+                ],
+                tech: ['React.js', 'Express.js', 'Node.js', 'PostgreSQL', 'Prisma ORM', 'Razorpay', 'RESTful APIs', 'Tailwind CSS'],
+                nextProject: 'janavaz',
+                prevProject: 'artverse'
+            },
+            janavaz: {
+                id: 'janavaz',
+                title: 'Janavaz — Civic Issue Reporting',
+                subtitle: 'An AI-powered civic issue reporting platform featuring Ethereum Testnet blockchain records for tamper-proof complaint storage.',
+                badge: '🥈 2nd Prize Winner',
+                badgeStyle: 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/30',
+                role: 'Full-Stack Developer',
+                timeline: 'October 2025',
+                category: 'Civic Tech, AI & Blockchain',
+                github: 'https://github.com/imganeshnayak/codemeet',
+                mainImage: 'projects/janawaz/Screenshot 2026-08-18 205521.png',
+                screenshots: [
+                    { src: 'projects/janawaz/Screenshot 2026-08-18 205521.png', title: 'AI Issue Detection & Reporting UI', desc: 'Civic complaint portal with AI-powered issue classification and automated tagging.' },
+                    { src: 'projects/janawaz/Screenshot 2026-08-18 205531.png', title: 'Geolocation & Image Capture', desc: 'Automatic location tagging and complaint photo verification.' },
+                    { src: 'projects/janawaz/Screenshot 2026-08-18 205538.png', title: 'Ethereum Blockchain Ledger', desc: 'Tamper-proof complaint records logged as smart contract transactions on Ethereum Testnet.' }
+                ],
+                overview: 'Janavaz was built with a hackathon team and awarded 2nd Prize at the Inter-College Code Meet Hackathon. The platform empowers citizens to report public infrastructure issues (like potholes, streetlights, and waste) using AI vision APIs and logs every complaint immutably on the Ethereum Testnet.',
+                features: [
+                    { title: 'AI Vision Auto-Classification', desc: 'Allows users to upload photos of civic damages; integrated vision AI models automatically categorize issue types and severity.' },
+                    { title: 'Blockchain Complaint Verification', desc: 'Logs complaint records as immutable transactions on the Ethereum Testnet using Web3.js and Solidity smart contracts for civic accountability.' },
+                    { title: 'Geolocation & Real-Time Tracking', desc: 'Captures precise GPS coordinates of reported issues and provides real-time status updates for citizens and municipal staff.' },
+                    { title: 'Full MERN Stack Implementation', desc: 'Responsive React.js web client connected to Express/Node.js REST backend and MongoDB database.' }
+                ],
+                tech: ['MongoDB', 'Express.js', 'React.js', 'Node.js', 'Solidity', 'Ethereum Testnet', 'Web3.js', 'AI Vision APIs'],
+                nextProject: 'artverse',
+                prevProject: 'krovaa'
+            }
+        };
+
+        // Load project from URL parameter
+        const urlParams = new URLSearchParams(window.location.search);
+        const projectId = urlParams.get('id') || 'artverse';
+        const project = projects[projectId] || projects.artverse;
+
+        // Render Page Data
+        document.title = `${project.title} | Ganesh Portfolio`;
+        document.getElementById('pageTitle').innerText = `${project.title} | Ganesh Portfolio`;
+        document.getElementById('headerTitle').innerText = project.title;
+        document.getElementById('projectTitle').innerText = project.title;
+        document.getElementById('projectSubtitle').innerText = project.subtitle;
+        
+        const badge = document.getElementById('projectBadge');
+        badge.innerText = project.badge;
+        badge.className = `inline-block px-3.5 py-1 text-xs font-bold rounded-full mb-4 ${project.badgeStyle}`;
+
+        document.getElementById('infoRole').innerText = project.role;
+        document.getElementById('infoTimeline').innerText = project.timeline;
+        document.getElementById('infoCategory').innerText = project.category;
+        document.getElementById('infoGithub').href = project.github;
+        document.getElementById('sidebarGithubLink').href = project.github;
+
+        // Live Demo Links
+        const liveDemoBtnHeader = document.getElementById('infoLiveDemo');
+        const liveDemoBtnSidebar = document.getElementById('sidebarLiveDemoLink');
+        if (project.liveDemo) {
+            if (liveDemoBtnHeader) {
+                liveDemoBtnHeader.href = project.liveDemo;
+                liveDemoBtnHeader.classList.remove('hidden');
+            }
+            if (liveDemoBtnSidebar) {
+                liveDemoBtnSidebar.href = project.liveDemo;
+                liveDemoBtnSidebar.classList.remove('hidden');
+            }
+        } else {
+            if (liveDemoBtnHeader) liveDemoBtnHeader.classList.add('hidden');
+            if (liveDemoBtnSidebar) liveDemoBtnSidebar.classList.add('hidden');
+        }
+
+        document.getElementById('overviewText').innerText = project.overview;
+        document.getElementById('placeholderPath').innerText = project.mainImage;
+
+        // Main Image Handling
+        const mainImg = document.getElementById('mainScreenshot');
+        const mainPlaceholder = document.getElementById('mainPlaceholder');
+        if (project.mainImage) {
+            mainImg.src = project.mainImage;
+            mainImg.onload = function() {
+                mainImg.classList.remove('hidden');
+                mainPlaceholder.classList.add('hidden');
+            };
+            mainImg.onerror = function() {
+                mainImg.classList.add('hidden');
+                mainPlaceholder.classList.remove('hidden');
+            };
+        }
+
+        // Features list
+        const featuresEl = document.getElementById('featuresList');
+        featuresEl.innerHTML = project.features.map(f => `
+            <li class="glass-panel p-4 rounded-xl border border-white/5">
+                <div class="font-bold text-white mb-1 flex items-center gap-2">
+                    <span class="material-symbols-rounded text-brand-400 text-base">check_circle</span> ${f.title}
+                </div>
+                <div class="text-zinc-400 leading-relaxed text-xs pl-6">${f.desc}</div>
+            </li>
+        `).join('');
+
+        // Tech chips
+        const techChipsEl = document.getElementById('techChips');
+        techChipsEl.innerHTML = project.tech.map(t => `
+            <span class="px-3 py-1 rounded-full bg-white/5 border border-white/10 text-xs font-medium text-zinc-200">${t}</span>
+        `).join('');
+
+        // Secondary Screenshots Grid
+        const gridEl = document.getElementById('secondaryScreenshotsGrid');
+        gridEl.innerHTML = project.screenshots.map((s, idx) => `
+            <div class="glass-panel p-2 rounded-2xl border border-white/10">
+                <div class="w-full aspect-video bg-zinc-900 rounded-xl overflow-hidden relative flex items-center justify-center">
+                    <img src="${s.src}" alt="${s.title}" class="w-full h-full object-cover rounded-xl" 
+                         onload="this.classList.remove('hidden'); if(this.nextElementSibling) this.nextElementSibling.classList.add('hidden');"
+                         onerror="this.classList.add('hidden'); if(this.nextElementSibling) this.nextElementSibling.classList.remove('hidden');" />
+                    <div class="w-full h-full min-h-[180px] flex flex-col items-center justify-center p-6 text-center bg-zinc-950/80 rounded-xl">
+                        <span class="material-symbols-rounded text-2xl text-zinc-500 mb-2">dashboard</span>
+                        <div class="text-xs font-bold text-white mb-1">${s.title}</div>
+                        <div class="text-[11px] text-zinc-400 mb-2">${s.desc}</div>
+                        <code class="text-[10px] text-brand-300 font-mono bg-white/5 px-2 py-0.5 rounded">${s.src}</code>
+                    </div>
+                </div>
+            </div>
+        `).join('');
+
+        // Switchers
+        const nextProj = projects[project.nextProject];
+        const prevProj = projects[project.prevProject];
+
+        document.getElementById('nextProjectBtn').href = `project-details.html?id=${nextProj.id}`;
+        document.getElementById('nextProjectTitle').innerText = nextProj.title.split('—')[0];
+
+        document.getElementById('prevProjectBtn').href = `project-details.html?id=${prevProj.id}`;
+        document.getElementById('prevProjectTitle').innerText = prevProj.title.split('—')[0];
+    </script>
+</body>
+
+</html>
+
